@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>br.com.cybereagle</groupId>
+		<artifactId>android-projects</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>testlibrary</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+	<name>Cyber Eagle Android Test Library</name>
+
+	<properties>
+	</properties>
+
+    <developers>
+        <developer>
+            <id>fernandocamargo</id>
+            <name>Fernando Henrique Fernandes de Camargo</name>
+            <email>fernando.camargo.ti@gmail.com</email>
+            <organization>Cyber Eagle</organization>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+	<issueManagement>
+		<system>Redmine</system>
+		<url>http://redmine.cybereagle.net/projects/eaglebaseproject/issues</url>
+	</issueManagement>
+
+	<dependencies>
+        <dependency>
+            <groupId>br.com.cybereagle</groupId>
+            <artifactId>commonlibrary</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>support-v4</artifactId>
+			<version>${support.v4.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.roboguice</groupId>
+			<artifactId>roboguice</artifactId>
+			<scope>compile</scope>
+		</dependency>		
+		<dependency>
+			<groupId>com.actionbarsherlock</groupId>
+			<artifactId>actionbarsherlock</artifactId>
+		</dependency>		
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.robolectric</groupId>
+			<artifactId>robolectric</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:svn:https://subversion.assembla.com/svn/cybereagle/trunk/android-projects/testlibrary</connection>
+		<url>redmine.cybereagle.net/projects/eaglebaseproject</url>
+	</scm>
+</project>

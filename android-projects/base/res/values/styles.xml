@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.cybereagle" parent="@style/Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:textAppearance">@style/BaseTextAppearance</item>
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="tipStyle">@style/tip_style</item>
+        <item name="tipStubStyle">@style/tip_stub_style</item>
+        <item name="tipGroupStyle">@style/tip_group_style</item>
+        
+        <item name="actionBarItemBackground">@drawable/selectable_background_cybereagle</item>
+        <item name="popupMenuStyle">@style/cybereagle_PopupMenu</item>
+        <item name="dropDownListViewStyle">@style/cybereagle_DropDownListView</item>
+        <item name="actionBarTabStyle">@style/cybereagle_ActionBarTabStyle</item>
+        <item name="vpiTabPageIndicatorStyle">@style/cybereagle_TabPageIndicatorStyle</item>
+        <item name="actionDropDownStyle">@style/cybereagle_DropDownNav</item>
+        <item name="actionBarStyle">@style/cybereagle_solid_ActionBar</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_cybereagle</item>
+        <item name="android:popupMenuStyle">@style/cybereagle_PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/cybereagle_DropDownListView</item>
+        <item name="android:actionBarTabStyle">@style/cybereagle_ActionBarTabStyle</item>
+        <item name="android:actionDropDownStyle">@style/cybereagle_DropDownNav</item>
+        <item name="android:actionBarStyle">@style/cybereagle_solid_ActionBar</item>
+        <item name="android:panelBackground">@drawable/menu_hardkey_panel_cybereagle</item>
+
+        <!-- Light.DarkActionBar specific -->
+        <item name="actionBarWidgetTheme">@style/Theme.cybereagle.widget</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.cybereagle.widget</item>
+    </style>
+
+    <style name="cybereagle_solid_ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="background">@drawable/ab_solid_cybereagle</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_cybereagle</item>
+        <item name="backgroundSplit">@drawable/ab_bottom_solid_cybereagle</item>
+        <item name="progressBarStyle">@style/cybereagle_ProgressBar</item>
+        <item name="android:background">@drawable/ab_solid_cybereagle</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_cybereagle</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_cybereagle</item>
+        <item name="android:progressBarStyle">@style/cybereagle_ProgressBar</item>
+    </style>
+
+    <style name="cybereagle_transparent_ActionBar" parent="@style/Widget.Sherlock.ActionBar">
+        <item name="background">@drawable/ab_transparent_cybereagle</item>
+        <item name="progressBarStyle">@style/cybereagle_ProgressBar</item>
+        <item name="android:background">@drawable/ab_transparent_cybereagle</item>
+        <item name="android:progressBarStyle">@style/cybereagle_ProgressBar</item>
+    </style>
+
+    <style name="cybereagle_PopupMenu" parent="@style/Widget.Sherlock.ListPopupWindow">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_cybereagle</item>
+    </style>
+
+    <style name="cybereagle_DropDownListView" parent="@style/Widget.Sherlock.ListView.DropDown">
+        <item name="android:listSelector">@drawable/selectable_background_cybereagle</item>
+    </style>
+
+    <style name="cybereagle_ActionBarTabStyle" parent="@style/Widget.Sherlock.ActionBar.TabView">
+        <item name="background">@drawable/tab_indicator_ab_cybereagle</item>
+        <item name="android:background">@drawable/tab_indicator_ab_cybereagle</item>
+    </style>
+    
+    <style name="cybereagle_TabPageIndicatorStyle" parent="Widget.TabPageIndicator">
+        <item name="android:background">@drawable/tab_indicator_ab_cybereagle</item>
+        <item name="android:textAppearance">@style/cybereagle_TabPageIndicatorStyle.Text</item>
+        <item name="android:textColor">#FF555555</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:divider">@drawable/tab_indicator_divider</item>
+        <item name="android:dividerPadding">10dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+    
+    <style name="cybereagle_TabPageIndicatorStyle.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="cybereagle_DropDownNav" parent="@style/Widget.Sherlock.Spinner.DropDown.ActionBar">
+        <item name="background">@drawable/spinner_background_ab_cybereagle</item>
+        <item name="android:background">@drawable/spinner_background_ab_cybereagle</item>
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_cybereagle</item>
+        <item name="android:dropDownSelector">@drawable/selectable_background_cybereagle</item>
+    </style>
+
+    <style name="cybereagle_ProgressBar" parent="@style/Widget.Sherlock.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_horizontal_cybereagle</item>
+    </style>
+
+    <!-- this style is only referenced in a Light.DarkActionBar based theme -->
+    <style name="Theme.cybereagle.widget" parent="@style/Theme.Sherlock">
+        <item name="popupMenuStyle">@style/cybereagle_PopupMenu</item>
+        <item name="dropDownListViewStyle">@style/cybereagle_DropDownListView</item>
+        <item name="android:popupMenuStyle">@style/cybereagle_PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@style/cybereagle_DropDownListView</item>
+    </style>
+
+    <style name="BaseTextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">@color/base_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    
+    <style name="BarTextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="tip_style">
+        <item name="android:background">@drawable/tip_shape</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tip_stub_style">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="tip_group_style">
+        <item name="android:measureAllChildren">true</item>
+    </style>
+
+</resources>

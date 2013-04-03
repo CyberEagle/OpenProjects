@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	
+	<declare-styleable name="EagleTheme">
+	    
+    </declare-styleable>
+    
+    <attr name="tipStyle" format="reference" />
+    
+    <attr name="tipStubStyle" format="reference" />
+    
+    <attr name="tipGroupStyle" format="reference" />
+    
+</resources>

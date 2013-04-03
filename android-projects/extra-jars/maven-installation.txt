@@ -1,0 +1,6 @@
+
+# Install Google Analytics
+mvn install:install-file -Dfile=libGoogleAnalyticsV2.jar -DgroupId=com.google.android -DartifactId=analytics-v2 -Dversion=r2 -Dpackaging=jar
+
+# Install Admob
+mvn install:install-file -Dfile=admob-6.1.0.jar -DgroupId=com.google.android -DartifactId=admob -Dversion=6.1.0 -Dpackaging=jar

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="confirmation">Tem certeza?</string>
+</resources>

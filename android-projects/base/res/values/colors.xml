@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="base_text_color">#2A363C</color>
+    <color name="pressed_cybereagle">#CC33b6e5</color>
+    <color name="special_text_color">#CDCDCD</color>
+</resources>
