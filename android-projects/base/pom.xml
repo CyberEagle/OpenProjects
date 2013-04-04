@@ -41,10 +41,22 @@
 		<dependency>
 		    <groupId>br.com.cybereagle</groupId>
 		    <artifactId>androidlibrary</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>br.com.cybereagle</groupId>
+                    <artifactId>commonlibrary</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>br.com.cybereagle</groupId>
 			<artifactId>testlibrary</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>br.com.cybereagle</groupId>
+                    <artifactId>commonlibrary</artifactId>
+                </exclusion>
+            </exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.roboguice</groupId>
@@ -58,23 +70,19 @@
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>actionbarsherlock</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.actionbarsherlock</groupId>
 			<artifactId>library</artifactId>
 			<type>apklib</type>
-		</dependency>
-		<dependency>
-			<groupId>com.actionbarsherlock</groupId>
-			<artifactId>actionbarsherlock</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.viewpagerindicator</groupId>
 			<artifactId>library</artifactId>
 			<type>apklib</type>
-		</dependency>
-		<dependency>
-			<groupId>com.google.android</groupId>
-			<artifactId>analytics-v2</artifactId>
 		</dependency>
 	</dependencies>
 

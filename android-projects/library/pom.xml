@@ -54,23 +54,21 @@
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>com.actionbarsherlock</groupId>
+            <artifactId>actionbarsherlock</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.actionbarsherlock</groupId>
 			<artifactId>library</artifactId>
 			<type>apklib</type>
-		</dependency>
-		<dependency>
-			<groupId>com.actionbarsherlock</groupId>
-			<artifactId>actionbarsherlock</artifactId>
+            <scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.viewpagerindicator</groupId>
 			<artifactId>library</artifactId>
 			<type>apklib</type>
-		</dependency>
-		<dependency>
-			<groupId>com.google.android</groupId>
-			<artifactId>analytics-v2</artifactId>
+            <scope>provided</scope>
 		</dependency>
 	</dependencies>
 
