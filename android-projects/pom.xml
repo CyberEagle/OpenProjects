@@ -8,30 +8,44 @@
 	<packaging>pom</packaging>
 	<name>Cyber Eagle Android Projects</name>
 	<description>Project from which all android projects of Cyber Eagle inherit from.</description>
-	<url></url>
-	
+	<url>https://github.com/CyberEagle/OpenProjects/tree/master/android-projects</url>
+
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Fernando Camargo</name>
+            <id>fernandocamargo</id>
+            <roles>
+                <role>Owner</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/CyberEagle/OpenProjects/issues</url>
+    </issueManagement>
+
+    <scm>
+        <url>https://github.com/CyberEagle/OpenProjects</url>
+        <connection>scm:git:git://github.com/CyberEagle/OpenProjects.git</connection>
+        <developerConnection>scm:git:git@github.com:CyberEagle/OpenProjects.git</developerConnection>
+    </scm>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.version>4.1.1.4</android.version>
 		<abs.version>4.2.0</abs.version>
 		<support.v4.version>r7</support.v4.version>
 	</properties>
-
-	<developers>
-		<developer>
-			<name>Fernando Camargo</name>
-			<id>fernandocamargo</id>
-			<roles>
-				<role>Owner</role>
-				<role>Developer</role>
-			</roles>
-		</developer>
-	</developers>
-
-	<issueManagement>
-		<system>Redmine</system>
-		<url>http://redmine.cybereagle.net/projects/cybereagleandroid/issues</url>
-	</issueManagement>
 
 	<dependencies>
 		<dependency>
@@ -272,9 +286,4 @@
 		</pluginManagement>
 	</build>
 
-
-	<scm>
-		<url>redmine.cybereagle.net/projects/cybereagleandroid</url>
-		<connection>scm:svn:https://subversion.assembla.com/svn/cybereagle/trunk/android-projects</connection>
-	</scm>
 </project>
