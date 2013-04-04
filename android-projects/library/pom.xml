@@ -86,18 +86,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
-				<artifactId>android-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
 
-	<scm>
-		<connection>scm:svn:https://subversion.assembla.com/svn/cybereagle/trunk/android-projects/library</connection>
-		<url>redmine.cybereagle.net/projects/eaglebaseproject</url>
-	</scm>
 </project>

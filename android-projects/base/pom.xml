@@ -110,8 +110,4 @@
 		</plugins>
 	</build>
 
-	<scm>
-		<connection>scm:svn:https://subversion.assembla.com/svn/cybereagle/trunk/android-projects/library</connection>
-		<url>redmine.cybereagle.net/projects/eaglebaseproject</url>
-	</scm>
 </project>
