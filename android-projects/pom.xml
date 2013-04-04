@@ -7,8 +7,9 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Cyber Eagle Android Projects</name>
-	<description>Projeto que encapsula todos os projetos android da Cyber Eagle.</description>
-
+	<description>Project from which all android projects of Cyber Eagle inherit from.</description>
+	<url></url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<android.version>4.1.1.4</android.version>
