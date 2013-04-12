@@ -268,7 +268,7 @@
 						<undeployBeforeDeploy>true</undeployBeforeDeploy>
 						<proguard>
 							<skip>false</skip>
-							<config>../proguard.cfg</config>
+							<config>proguard.cfg</config>
 						</proguard>
 					</configuration>
 					<extensions>true</extensions>
