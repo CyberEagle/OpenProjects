@@ -100,7 +100,7 @@ public class ImageLoader {
     }
 
     //decodes image and scales it to reduce memory consumption
-    private Bitmap decodeFile(File f) {
+    public Bitmap decodeFile(File f) {
         try {
             //decode image size
             BitmapFactory.Options o = new BitmapFactory.Options();
@@ -135,34 +135,6 @@ public class ImageLoader {
         return null;
     }
 
-//    private class FakePhotosLoader implements Runnable {
-//        private PhotoToLoad photoToLoad;
-//
-//        FakePhotosLoader(PhotoToLoad photoToLoad) {
-//            this.photoToLoad = photoToLoad;
-//        }
-//
-//        @Override
-//        public void run() {
-//            try {
-//                if (imageViewReused(photoToLoad))
-//                    return;
-//                Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.capa1);
-//                memoryCache.put(photoToLoad.getUrl(), bmp);
-//                if (imageViewReused(photoToLoad))
-//                    return;
-//                BitmapDisplayer bd = bitmapDisplayerImplementation.newInstance();
-//                bd.setImageLoader(ImageLoader.this);
-//                bd.setBitmap(bmp);
-//                bd.setPhotoToLoad(photoToLoad);
-//
-//                handler.post(bd);
-//            } catch (Throwable th) {
-//                th.printStackTrace();
-//            }
-//        }
-//    }
-
     public boolean imageViewReused(PhotoToLoad photoToLoad) {
         String tag = imageViews.get(photoToLoad.getImageView());
         if (tag == null || !tag.equals(photoToLoad.getUrl()))
@@ -181,6 +153,10 @@ public class ImageLoader {
 
     public MemoryCache getMemoryCache() {
         return memoryCache;
+    }
+
+    public FileCache getFileCache() {
+        return fileCache;
     }
 
     public int getStubId() {
