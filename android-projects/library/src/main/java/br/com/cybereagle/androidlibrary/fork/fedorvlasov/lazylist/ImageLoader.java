@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.io.*;
@@ -15,18 +16,18 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class ImageLoader {
+public class ImageLoader<T extends View> {
 
     private Context context;
     private BitmapDisplayer bitmapDisplayer;
     private PhotosLoader photosLoader;
-    private ImageViewAdjuster imageViewAdjuster;
+    private ImageAdjuster<T> imageViewAdjuster;
 
     private int stubId;
 
     private MemoryCache memoryCache = new MemoryCache();
     private FileCache fileCache;
-    private Map<ImageView, String> imageViews = Collections.synchronizedMap(new WeakHashMap<ImageView, String>());
+    private Map<T, String> imageViews = Collections.synchronizedMap(new WeakHashMap<T, String>());
     private ExecutorService executorService;
     private Handler handler = new Handler();//handler to display images in UI thread
 
@@ -36,20 +37,25 @@ public class ImageLoader {
         fileCache = new FileCache(context);
     }
 
-    public void displayImage(String url, ImageView imageView) {
-        imageViews.put(imageView, url);
+    public void displayImage(String url, T view) {
+        imageViews.put(view, url);
         Bitmap bitmap = memoryCache.get(url);
         if (bitmap != null){
-            imageViewAdjuster.setBitmap(imageView, bitmap);
+            imageViewAdjuster.setBitmap(view, bitmap);
         }
         else {
-            queuePhoto(url, imageView);
-            imageView.setImageResource(stubId);
+            queuePhoto(url, view);
+            if(view instanceof ImageView){
+                ((ImageView)view).setImageResource(stubId);
+            }
+            else{
+                view.setBackgroundResource(stubId);
+            }
         }
     }
 
-    private void queuePhoto(String url, ImageView imageView) {
-        final PhotoToLoad photoToLoad = new PhotoToLoad(url, imageView);
+    private void queuePhoto(String url, T view) {
+        final PhotoToLoad photoToLoad = new PhotoToLoad(url, view);
         executorService.submit(new Runnable() {
             @Override
             public void run() {
@@ -125,8 +131,8 @@ public class ImageLoader {
         return null;
     }
 
-    public boolean imageViewReused(PhotoToLoad photoToLoad) {
-        String tag = imageViews.get(photoToLoad.getImageView());
+    public boolean viewReused(PhotoToLoad photoToLoad) {
+        String tag = imageViews.get(photoToLoad.getView());
         if (tag == null || !tag.equals(photoToLoad.getUrl()))
             return true;
         return false;
@@ -162,16 +168,16 @@ public class ImageLoader {
         return context;
     }
 
-    public ImageViewAdjuster getImageViewAdjuster() {
+    public ImageAdjuster getImageViewAdjuster() {
         return imageViewAdjuster;
     }
 
-    public static class Builder {
+    public static class Builder<B extends View> {
 
         private Context context;
         private BitmapDisplayer bitmapDisplayer;
         private PhotosLoader photosLoader;
-        private ImageViewAdjuster imageViewAdjuster;
+        private ImageAdjuster<B> imageViewAdjuster;
         private ExecutorService executorService;
         private int threadPoolSize = 5;
         private int stubId;
@@ -191,7 +197,7 @@ public class ImageLoader {
             return this;
         }
 
-        public Builder setImageViewAdjuster(ImageViewAdjuster imageViewAdjuster) {
+        public Builder setImageViewAdjuster(ImageAdjuster<B> imageViewAdjuster) {
             this.imageViewAdjuster = imageViewAdjuster;
             return this;
         }
@@ -206,8 +212,8 @@ public class ImageLoader {
             return this;
         }
 
-        public ImageLoader build(){
-            ImageLoader imageLoader = new ImageLoader(context, stubId);
+        public ImageLoader<B> build(){
+            ImageLoader<B> imageLoader = new ImageLoader<B>(context, stubId);
             if(bitmapDisplayer != null){
                 imageLoader.bitmapDisplayer = bitmapDisplayer;
             }
@@ -224,7 +230,7 @@ public class ImageLoader {
                 imageLoader.imageViewAdjuster = imageViewAdjuster;
             }
             else{
-                imageLoader.imageViewAdjuster = new DefaultImageViewAdjuster();
+                imageLoader.imageViewAdjuster = new DefaultImageViewAdjuster<B>(context.getResources());
             }
             if(executorService != null){
                 imageLoader.executorService = executorService;

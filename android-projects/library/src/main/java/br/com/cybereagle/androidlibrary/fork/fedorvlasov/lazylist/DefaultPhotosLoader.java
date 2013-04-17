@@ -7,13 +7,13 @@ public class DefaultPhotosLoader implements PhotosLoader{
     @Override
     public void loadPhoto(ImageLoader imageLoader, PhotoToLoad photoToLoad) {
         try {
-            if (imageLoader.imageViewReused(photoToLoad)){
+            if (imageLoader.viewReused(photoToLoad)){
                 return;
             }
 
             Bitmap bitmap = imageLoader.getBitmap(photoToLoad.getUrl());
             imageLoader.getMemoryCache().put(photoToLoad.getUrl(), bitmap);
-            if (imageLoader.imageViewReused(photoToLoad)){
+            if (imageLoader.viewReused(photoToLoad)){
                 return;
             }
 

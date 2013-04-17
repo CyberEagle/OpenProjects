@@ -1,15 +1,16 @@
 package br.com.cybereagle.androidlibrary.fork.fedorvlasov.lazylist;
 
+import android.view.View;
 import android.widget.ImageView;
 
-public class PhotoToLoad {
+public class PhotoToLoad<T extends View> {
 
     private String url;
-    private ImageView imageView;
+    private T view;
 
-    public PhotoToLoad(String u, ImageView i) {
+    public PhotoToLoad(String u, T i) {
         url = u;
-        imageView = i;
+        view = i;
     }
 
     public String getUrl() {
@@ -20,11 +21,11 @@ public class PhotoToLoad {
         this.url = url;
     }
 
-    public ImageView getImageView() {
-        return imageView;
+    public T getView() {
+        return view;
     }
 
-    public void setImageView(ImageView imageView) {
-        this.imageView = imageView;
+    public void setView(T view) {
+        this.view = view;
     }
 }
