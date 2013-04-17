@@ -18,8 +18,9 @@ import java.util.concurrent.Executors;
 public class ImageLoader {
 
     private Context context;
-    private Class<? extends BitmapDisplayer> bitmapDisplayerImplementation;
-    private Class<? extends PhotosLoader> photosLoaderImplementation;
+    private BitmapDisplayer bitmapDisplayer;
+    private PhotosLoader photosLoader;
+    private ImageViewAdjuster imageViewAdjuster;
 
     private int stubId;
 
@@ -29,24 +30,18 @@ public class ImageLoader {
     private ExecutorService executorService;
     private Handler handler = new Handler();//handler to display images in UI thread
 
-    public ImageLoader(Context context, int stubId){
-        this(context, stubId, DefaultBitmapDisplayer.class, DefaultPhotoLoader.class);
-    }
-
-    public ImageLoader(Context context, int stubId, Class<? extends BitmapDisplayer> bitmapDisplayerImplementation, Class<? extends PhotosLoader> photosLoaderImplementation) {
+    private ImageLoader(Context context, int stubId){
         this.context = context;
         this.stubId = stubId;
-        this.bitmapDisplayerImplementation = bitmapDisplayerImplementation;
-        this.photosLoaderImplementation = photosLoaderImplementation;
-        this.fileCache = new FileCache(context);
-        this.executorService = Executors.newFixedThreadPool(5);
+        fileCache = new FileCache(context);
     }
 
     public void displayImage(String url, ImageView imageView) {
         imageViews.put(imageView, url);
         Bitmap bitmap = memoryCache.get(url);
-        if (bitmap != null)
-            imageView.setImageBitmap(bitmap);
+        if (bitmap != null){
+            imageViewAdjuster.setBitmap(imageView, bitmap);
+        }
         else {
             queuePhoto(url, imageView);
             imageView.setImageResource(stubId);
@@ -54,18 +49,13 @@ public class ImageLoader {
     }
 
     private void queuePhoto(String url, ImageView imageView) {
-        PhotoToLoad p = new PhotoToLoad(url, imageView);
-        try {
-            PhotosLoader photosLoader = photosLoaderImplementation.newInstance();
-            photosLoader.setImageLoader(this);
-            photosLoader.setPhotoToLoad(p);
-            photosLoader.setBitmapDisplayerImplementation(bitmapDisplayerImplementation);
-            executorService.submit(photosLoader);
-        } catch (InstantiationException e) {
-            throw new IllegalStateException(e);
-        } catch (IllegalAccessException e) {
-            throw new IllegalStateException(e);
-        }
+        final PhotoToLoad photoToLoad = new PhotoToLoad(url, imageView);
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                photosLoader.loadPhoto(ImageLoader.this, photoToLoad);
+            }
+        });
     }
 
     public Bitmap getBitmap(String url) {
@@ -147,8 +137,13 @@ public class ImageLoader {
         fileCache.clear();
     }
 
-    public void execute(BitmapDisplayer bitmapDisplayer){
-        handler.post(bitmapDisplayer);
+    public void displayBitmap(final PhotoToLoad photoToLoad, final Bitmap bitmap){
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                bitmapDisplayer.displayBitmap(ImageLoader.this, photoToLoad, bitmap, imageViewAdjuster);
+            }
+        });
     }
 
     public MemoryCache getMemoryCache() {
@@ -165,5 +160,81 @@ public class ImageLoader {
 
     public Context getContext() {
         return context;
+    }
+
+    public ImageViewAdjuster getImageViewAdjuster() {
+        return imageViewAdjuster;
+    }
+
+    public static class Builder {
+
+        private Context context;
+        private BitmapDisplayer bitmapDisplayer;
+        private PhotosLoader photosLoader;
+        private ImageViewAdjuster imageViewAdjuster;
+        private ExecutorService executorService;
+        private int threadPoolSize = 5;
+        private int stubId;
+
+        public Builder(Context context, int stubId){
+            this.context = context;
+            this.stubId = stubId;
+        }
+
+        public Builder setBitmapDisplayer(BitmapDisplayer bitmapDisplayer) {
+            this.bitmapDisplayer = bitmapDisplayer;
+            return this;
+        }
+
+        public Builder setPhotosLoader(PhotosLoader photosLoader) {
+            this.photosLoader = photosLoader;
+            return this;
+        }
+
+        public Builder setImageViewAdjuster(ImageViewAdjuster imageViewAdjuster) {
+            this.imageViewAdjuster = imageViewAdjuster;
+            return this;
+        }
+
+        public Builder setExecutorService(ExecutorService executorService) {
+            this.executorService = executorService;
+            return this;
+        }
+
+        public Builder setThreadPoolSize(int threadPoolSize) {
+            this.threadPoolSize = threadPoolSize;
+            return this;
+        }
+
+        public ImageLoader build(){
+            ImageLoader imageLoader = new ImageLoader(context, stubId);
+            if(bitmapDisplayer != null){
+                imageLoader.bitmapDisplayer = bitmapDisplayer;
+            }
+            else{
+                imageLoader.bitmapDisplayer = new DefaultBitmapDisplayer();
+            }
+            if(photosLoader != null){
+                imageLoader.photosLoader = photosLoader;
+            }
+            else{
+                imageLoader.photosLoader = new DefaultPhotosLoader();
+            }
+            if(imageViewAdjuster != null){
+                imageLoader.imageViewAdjuster = imageViewAdjuster;
+            }
+            else{
+                imageLoader.imageViewAdjuster = new DefaultImageViewAdjuster();
+            }
+            if(executorService != null){
+                imageLoader.executorService = executorService;
+            }
+            else{
+                imageLoader.executorService = Executors.newFixedThreadPool(threadPoolSize);
+            }
+
+            return imageLoader;
+        }
+
     }
 }
