@@ -51,7 +51,7 @@
         </dependency>
 		<dependency>
 			<groupId>br.com.cybereagle</groupId>
-			<artifactId>testlibrary</artifactId>
+			<artifactId>androidtestlibrary</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.roboguice</groupId>

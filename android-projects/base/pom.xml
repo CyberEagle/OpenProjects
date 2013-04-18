@@ -61,7 +61,7 @@
 		</dependency>
 		<dependency>
 			<groupId>br.com.cybereagle</groupId>
-			<artifactId>testlibrary</artifactId>
+			<artifactId>androidtestlibrary</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>br.com.cybereagle</groupId>
