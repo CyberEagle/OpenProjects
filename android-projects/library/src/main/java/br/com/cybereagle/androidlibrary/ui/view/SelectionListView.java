@@ -1,6 +1,7 @@
 package br.com.cybereagle.androidlibrary.ui.view;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
 import android.view.MotionEvent;
@@ -122,6 +123,11 @@ public class SelectionListView extends ListView {
             actionMode = activity.startActionMode(actionModeCallback);
 
         actionMode.setTitle(String.format(selectedStringFormat, checkedCount));
+    }
+
+    public void onRestoreInstanceState (Parcelable state){
+        super.onRestoreInstanceState(state);
+        updateActionMode();
     }
 
     public void clearChecked() {
