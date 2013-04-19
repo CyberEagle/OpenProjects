@@ -19,6 +19,7 @@ package br.com.cybereagle.androidlibrary.ui.view;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -34,11 +35,17 @@ public class EditableListView extends ScrollView {
 	
 	private Drawable divider;
     private int dividerHeight;
-	
+
+    public EditableListView(Context context) {
+        this( context, null, 0);
+    }
+
+    public EditableListView(Context context, AttributeSet attrs) {
+        this( context, attrs, 0);
+    }
     
-    
-	public EditableListView(Context context) {
-		super(context);
+	public EditableListView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
 		this.linearLayout = new LinearLayout(context);
 		this.linearLayout.setOrientation(LinearLayout.VERTICAL);
 		@SuppressWarnings("deprecation")
