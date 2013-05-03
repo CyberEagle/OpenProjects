@@ -7,7 +7,7 @@
 		<artifactId>android-projects</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>testlibrary</artifactId>
+	<artifactId>androidtestlibrary</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>Cyber Eagle Android Test Library</name>
