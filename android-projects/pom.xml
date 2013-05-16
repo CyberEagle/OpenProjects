@@ -44,7 +44,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <android.version>4.1.1.4</android.version>
         <abs.version>4.2.0</abs.version>
-        <support.v4.version>r7</support.v4.version>
+        <support.v4.version>r13</support.v4.version>
     </properties>
 
     <dependencies>
@@ -208,6 +208,59 @@
                 <artifactId>universal-image-loader</artifactId>
                 <version>1.8.4</version>
             </dependency>
+
+            <!-- RoboSpice and Modules -->
+            <dependency>
+                <groupId>com.octo.android.robospice</groupId>
+                <artifactId>robospice</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+
+            <!-- Spring Android Module of RoboSpice -->
+            <dependency>
+                <groupId>com.octo.android.robospice</groupId>
+                <artifactId>robospice-spring-android</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>1.9.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.2.2</version>
+            </dependency>
+
+            <!-- Google HttpClient Module of RoboSpice -->
+            <dependency>
+                <groupId>com.octo.android.robospice</groupId>
+                <artifactId>robospice-google-http-client</artifactId>
+                <version>1.4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.http-client</groupId>
+                <artifactId>google-http-client-jackson2</artifactId>
+                <version>1.14.1-beta</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>xpp3</groupId>
+                        <artifactId>xpp3</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>stax</groupId>
+                        <artifactId>stax-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--&lt;!&ndash; Retrofit Module of RoboSpice &ndash;&gt;-->
+            <!--<dependency>-->
+                <!--<groupId>com.octo.android.robospice</groupId>-->
+                <!--<artifactId>robospice-retrofit</artifactId>-->
+                <!--<version>1.4.1-SNAPSHOT</version>-->
+            <!--</dependency>-->
 
         </dependencies>
     </dependencyManagement>

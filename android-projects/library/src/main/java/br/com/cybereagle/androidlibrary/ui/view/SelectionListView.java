@@ -83,8 +83,10 @@ public class SelectionListView extends ListView {
             selectionMode = true;
             startPosition = pointToPosition(x, y);
         }
-        if (!selectionMode)
+        if (!selectionMode){
             return super.onTouchEvent(ev);
+        }
+
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 break;
@@ -97,8 +99,10 @@ public class SelectionListView extends ListView {
             default:
                 selectionMode = false;
                 int mItemPosition = pointToPosition(x, y);
-                if (startPosition != ListView.INVALID_POSITION)
+                if (startPosition != ListView.INVALID_POSITION && mItemPosition >= getHeaderViewsCount()){
                     setItemChecked(mItemPosition, !isItemChecked(mItemPosition));
+                }
+
         }
 
         return true;
@@ -158,7 +162,7 @@ public class SelectionListView extends ListView {
                     setItemChecked(position, true);
                 }
 
-                return false;
+                return true;
             }
         });
     }
