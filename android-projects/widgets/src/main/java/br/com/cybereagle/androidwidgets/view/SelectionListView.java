@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package br.com.cybereagle.androidlibrary.ui.view;
+package br.com.cybereagle.androidwidgets.view;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -155,11 +155,13 @@ public class SelectionListView extends ListView {
         setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                if(isItemChecked(position)){
-                    setItemChecked(position, false);
-                }
-                else{
-                    setItemChecked(position, true);
+                if(position >= getHeaderViewsCount()){
+                    if(isItemChecked(position)){
+                        setItemChecked(position, false);
+                    }
+                    else{
+                        setItemChecked(position, true);
+                    }
                 }
 
                 return true;

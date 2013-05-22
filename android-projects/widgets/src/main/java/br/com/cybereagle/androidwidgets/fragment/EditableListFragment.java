@@ -14,15 +14,14 @@
  *    limitations under the License.
  */
 
-package br.com.cybereagle.androidlibrary.ui.fragment;
+package br.com.cybereagle.androidwidgets.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
-import br.com.cybereagle.androidlibrary.ui.view.EditableListView;
-
+import br.com.cybereagle.androidwidgets.view.EditableListView;
 import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragment;
 
 public abstract class EditableListFragment extends RoboSherlockFragment{

@@ -16,4 +16,7 @@
   -->
 
 <resources>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirmation">Are you sure?</string>
 </resources>

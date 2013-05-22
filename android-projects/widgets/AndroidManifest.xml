@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright 2013 Cyber Eagle
   ~
@@ -15,5 +15,10 @@
   ~ limitations under the License.
   -->
 
-<resources>
-</resources>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="br.com.cybereagle.androidwidgets"
+      android:versionCode="1"
+      android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="16" />
+
+</manifest>

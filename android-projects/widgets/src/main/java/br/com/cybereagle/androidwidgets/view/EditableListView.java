@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package br.com.cybereagle.androidlibrary.ui.view;
+package br.com.cybereagle.androidwidgets.view;
 
 import android.content.Context;
 import android.database.DataSetObserver;

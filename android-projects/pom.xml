@@ -72,6 +72,13 @@
             </dependency>
             <dependency>
                 <groupId>br.com.cybereagle</groupId>
+                <artifactId>androidwidgets</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <scope>compile</scope>
+                <type>apklib</type>
+            </dependency>
+            <dependency>
+                <groupId>br.com.cybereagle</groupId>
                 <artifactId>androidbase</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
                 <scope>compile</scope>

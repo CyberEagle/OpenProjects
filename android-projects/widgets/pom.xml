@@ -7,12 +7,12 @@
 		<artifactId>android-projects</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>androidbase</artifactId>
+	<artifactId>androidwidgets</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>apklib</packaging>
-	<name>Cyber Eagle Android Base Project</name>
+	<name>Cyber Eagle Android Widgets Project</name>
     <description>Android library project (APK) used by Cyber Eagle android projects.</description>
-    <url>https://github.com/CyberEagle/OpenProjects/tree/master/android-projects/base</url>
+    <url>https://github.com/CyberEagle/OpenProjects/tree/master/android-projects/widgets</url>
 
     <licenses>
         <license>
@@ -48,10 +48,12 @@
 		<dependency>
 		    <groupId>br.com.cybereagle</groupId>
 		    <artifactId>commonlibrary</artifactId>
+            <scope>provided</scope>
 		</dependency>
 		<dependency>
 		    <groupId>br.com.cybereagle</groupId>
 		    <artifactId>androidlibrary</artifactId>
+            <scope>provided</scope>
             <exclusions>
                 <exclusion>
                     <groupId>br.com.cybereagle</groupId>
@@ -69,11 +71,6 @@
                 </exclusion>
             </exclusions>
 		</dependency>
-        <dependency>
-            <groupId>br.com.cybereagle</groupId>
-            <artifactId>androidwidgets</artifactId>
-            <type>apklib</type>
-        </dependency>
 		<dependency>
 			<groupId>org.roboguice</groupId>
 			<artifactId>roboguice</artifactId>
