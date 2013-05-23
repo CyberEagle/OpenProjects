@@ -17,6 +17,7 @@
 package br.com.cybereagle.androidwidgets.backport.popupmenu;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -37,7 +38,7 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
     private CheckBox mCheckBox;
     private TextView mShortcutView;
 
-    //private Drawable mBackground;
+    private Drawable mBackground;
     private int mTextAppearance;
     private Context mTextAppearanceContext;
     private boolean mPreserveIconSpacing;
@@ -55,18 +56,18 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
 
         mContext = context;
 
-        /* TypedArray a =
+         TypedArray a =
             context.obtainStyledAttributes(
-                attrs, com.android.internal.R.styleable.MenuView, defStyle, 0);
-        */
-        //mBackground = a.getDrawable(com.android.internal.R.styleable.MenuView_itemBackground);
-        mTextAppearance = -1 ; /* a.getResourceId(com.android.internal.R.styleable.
-                                          MenuView_itemTextAppearance, -1); */
-        mPreserveIconSpacing = false; /* a.getBoolean(
-                com.android.internal.R.styleable.MenuView_preserveIconSpacing, false); */
+                attrs, R.styleable.SherlockMenuView, defStyle, 0);
+
+        mBackground = a.getDrawable(R.styleable.SherlockMenuView_itemBackground);
+        mTextAppearance = a.getResourceId(R.styleable.
+                                          SherlockMenuView_itemTextAppearance, -1);
+        mPreserveIconSpacing = false; a.getBoolean(
+                R.styleable.SherlockMenuView_preserveIconSpacing, false);
         mTextAppearanceContext = context;
 
-        // a.recycle();
+        a.recycle();
     }
 
     public ListMenuItemView(Context context, AttributeSet attrs) {
@@ -77,7 +78,7 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        //setBackgroundDrawable(mBackground);
+        setBackgroundDrawable(mBackground);
 
         mTitleView = (TextView) findViewById(R.id.title);
         if (mTextAppearance != -1) {
@@ -233,31 +234,26 @@ public class ListMenuItemView extends LinearLayout implements MenuView.ItemView 
     }
 
     private void insertIconView() {
-        /*
         LayoutInflater inflater = getInflater();
-        mIconView = (ImageView) inflater.inflate(com.android.internal.R.layout.list_menu_item_icon,
+        mIconView = (ImageView) inflater.inflate(R.layout.abs__list_menu_item_checkbox,
                 this, false);
         addView(mIconView, 0);
-        */
     }
 
     private void insertRadioButton() {
-        /*
         LayoutInflater inflater = getInflater();
         mRadioButton =
-                (RadioButton) inflater.inflate(com.android.internal.R.layout.list_menu_item_radio,
+                (RadioButton) inflater.inflate(R.layout.abs__list_menu_item_radio,
                 this, false);
         addView(mRadioButton);
-        */
     }
 
     private void insertCheckBox() {
-        /* LayoutInflater inflater = getInflater();
+        LayoutInflater inflater = getInflater();
         mCheckBox =
-                (CheckBox) inflater.inflate(com.android.internal.R.layout.list_menu_item_checkbox,
+                (CheckBox) inflater.inflate(R.layout.abs__list_menu_item_checkbox,
                 this, false);
         addView(mCheckBox);
-        */
     }
 
     public boolean prefersCondensedTitle() {

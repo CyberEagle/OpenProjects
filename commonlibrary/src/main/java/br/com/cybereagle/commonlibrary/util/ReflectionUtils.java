@@ -1,10 +1,13 @@
 package br.com.cybereagle.commonlibrary.util;
 
+import br.com.cybereagle.commonlibrary.exception.MethodNotFoundException;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ReflectionUtils {
@@ -14,13 +17,10 @@ public class ReflectionUtils {
         Class<?> clazz = field.getDeclaringClass();
         String adjustedName = getAjustedName(field);
         Class<?> fieldType = field.getType();
-        // Verifica se o campo é boolean
         if (fieldType.isAssignableFrom(boolean.class)
                 || fieldType.isAssignableFrom(Boolean.class)) {
-            // Retorna o método na forma isNomeCampo
             return clazz.getMethod("is" + adjustedName);
         } else {
-            // Retorna o método na forma getNomeCampo
             return clazz.getMethod("get" + adjustedName);
         }
     }
@@ -29,13 +29,10 @@ public class ReflectionUtils {
             throws NoSuchMethodException {
         String adjustedName = getAjustedName(field);
         Class<?> fieldType = field.getType();
-        // Retorna o método na forma setNomeCampos que receba como parâmetro
-        // um valor com o tipo do campo
         return field.getDeclaringClass().getMethod("set" + adjustedName, fieldType);
     }
 
     private static String getAjustedName(Field field) {
-        // Passa a primeira letra do nome do campo para UpperCase
         return Character.toUpperCase(field.getName().charAt(0))
                 + field.getName().substring(1);
     }
@@ -46,7 +43,7 @@ public class ReflectionUtils {
         try {
             setter(field).invoke(target, value);
         } catch (IllegalAccessException e) {
-            // Nunca acontecerá, pois o método é público
+            // It'll never happen
         } catch (NoSuchMethodException e) {
             if(!field.isAccessible()){
                 field.setAccessible(true);
@@ -54,7 +51,7 @@ public class ReflectionUtils {
             try {
                 field.set(target, value);
             } catch (IllegalAccessException e1) {
-                // Nunca acontecerá, pois o campo está acessível
+                // It'll never happen
             }
         }
     }
@@ -88,7 +85,7 @@ public class ReflectionUtils {
         try {
             return getter(field).invoke(target);
         } catch (IllegalAccessException e) {
-            // Nunca acontecerá, pois o método é público
+            // It'll never happen
             return null;
         } catch (NoSuchMethodException e) {
             if(!field.isAccessible()){
@@ -97,20 +94,12 @@ public class ReflectionUtils {
             try {
                 return field.get(target);
             } catch (IllegalAccessException e1) {
-                // Nunca acontecerá, pois o campo está acessível
+                // It'll never happen
                 return null;
             }
         }
     }
 
-    /**
-     * Retorna um array das variáveis de instância de uma classe específica.<br>
-     * Uma variável de instância é definida como um campo não static declarado ou
-     * herdado por uma classe.
-     *
-     * @return java.lang.Field[]
-     * @param clazz java.lang.Class
-     */
     public static List<Field> getInstanceVariables(Class<?> clazz) {
         List<Field> listFields = new ArrayList<Field>();
         while (clazz != null) {
@@ -125,26 +114,67 @@ public class ReflectionUtils {
         return listFields;
     }
 
-    /**
-     * Retorna um array das variáveis de instância de uma classe específica.<br>
-     * Uma variável de instância é definida como um campo não static declarado ou
-     * herdado por uma classe.
-     *
-     * @return java.lang.Field[]
-     * @param clazz java.lang.Class
-     */
     public static Field getInstanceVariable(Class<?> clazz, String name) {
-        while (clazz != null) {
-            Field[] fields = clazz.getDeclaredFields();
-            for(Field field : fields) {
-                if(!Modifier.isStatic(field.getModifiers()) &&
-                        field.getName().equals(name)) {
-                    return field;
+        try {
+            return clazz.getDeclaredField(name);
+        } catch (NoSuchFieldException e) {
+            while (clazz != null) {
+                Field[] fields = clazz.getDeclaredFields();
+                for(Field field : fields) {
+                    if(!Modifier.isStatic(field.getModifiers()) &&
+                            field.getName().equals(name)) {
+                        return field;
+                    }
                 }
+                clazz = clazz.getSuperclass();
             }
-            clazz = clazz.getSuperclass();
+            return null;
         }
-        return null;
+    }
+
+    public static Method getRestrictedMethod(Class<?> clazz, String name, Class<?>... parameterTypes){
+        try {
+            return clazz.getDeclaredMethod(name, parameterTypes);
+        } catch (NoSuchMethodException e) {
+            while (clazz != null) {
+                Method[] methods = clazz.getDeclaredMethods();
+                for(Method method : methods) {
+                    if(!Modifier.isStatic(method.getModifiers()) &&
+                            method.getName().equals(name) && Arrays.equals(method.getParameterTypes(), parameterTypes)) {
+                        return method;
+                    }
+                }
+                clazz = clazz.getSuperclass();
+            }
+            return null;
+        }
+    }
+
+    public static <T> T invokeRestrictedMethod(Object target, String name, Object[] parameters) throws InvocationTargetException {
+        Class<?>[] parameterTypes = new Class[parameters.length];
+        for(int i=0; i<parameters.length; i++){
+            parameterTypes[i] = parameters[i].getClass();
+        }
+        return invokeRestrictedMethod(target, name, parameters, parameterTypes);
+    }
+
+    public static <T> T invokeRestrictedMethod(Object target, String name, Object[] parameters, Class<?>... parameterTypes) throws InvocationTargetException {
+        Method restrictedMethod = getRestrictedMethod(target.getClass(), name, parameterTypes);
+
+        if(restrictedMethod == null){
+            throw new MethodNotFoundException(String.format("Method %s not found.", name));
+        }
+
+        if(!restrictedMethod.isAccessible()){
+            restrictedMethod.setAccessible(true);
+        }
+
+        try {
+            return (T) restrictedMethod.invoke(target, parameters);
+        } catch (IllegalAccessException e) {
+            // It'll never happen
+            return null;
+        }
     }
 
 }
