@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.com.cybereagle.androidwidgets.backport;
+package br.com.cybereagle.androidwidgets.backport.popupmenu;
 
 import android.content.Context;
 import android.database.DataSetObserver;
@@ -36,6 +36,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import br.com.cybereagle.androidlibrary.util.HackUtils;
 
 /**
  * A ListPopupWindow anchors itself to a host view and displays a
@@ -97,6 +98,8 @@ public class ListPopupWindow {
     private Rect mTempRect = new Rect();
 
     private boolean mModal;
+
+    private HackUtils hackUtils;
 
     /**
      * The provided prompt view should appear above list content.
@@ -197,7 +200,7 @@ public class ListPopupWindow {
      */
     public ListPopupWindow(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         mContext = context;
-//        mPopup = new PopupWindow(context, attrs); // flavor with styleres is only in Honeycomb
+        hackUtils = new HackUtils();
         mPopup = new PopupWindow(context, attrs, defStyleAttr, defStyleRes);
         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
     }
@@ -1101,11 +1104,7 @@ public class ListPopupWindow {
             return maxHeight + padding;
         }
 
-        // TODO: compute the height based on menu contents
-        // measureheightofchildren not defined. cheating for now, because initial use cases
-        // always have the same number of children.
-        // height 32, 6 children in current cases,
-        final int listContent = 32 * 6;
+        final int listContent = hackUtils.measureHeightOfChildren(mDropDownList, MeasureSpec.UNSPECIFIED, 0, -1, maxHeight - otherHeights, -1);
 
         // mDropDownList.measure(widthMeasureSpec, heightMeasureSpec)    .measureHeightOfChildren(MeasureSpec.UNSPECIFIED,
         //        0, 0 /* ListView.NO_POSITION */, maxHeight - otherHeights, -1);
