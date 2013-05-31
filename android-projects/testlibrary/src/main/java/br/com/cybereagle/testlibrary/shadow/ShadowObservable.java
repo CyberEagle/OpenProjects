@@ -17,8 +17,8 @@
 package br.com.cybereagle.testlibrary.shadow;
 
 import android.database.Observable;
-import org.robolectric.internal.Implementation;
-import org.robolectric.internal.Implements;
+import org.robolectric.annotation.Implementation;
+import org.robolectric.annotation.Implements;
 
 import java.util.ArrayList;
 

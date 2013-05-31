@@ -16,6 +16,7 @@ lint.xml
 *.iws
 classes
 gen-external-apklibs
+atlassian-ide-plugin.xml
 
 #Maven
 target

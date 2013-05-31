@@ -97,7 +97,13 @@
 			<type>apklib</type>
             <scope>provided</scope>
 		</dependency>
-	</dependencies>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
+    </dependencies>
 
 	<build>
 		<plugins>

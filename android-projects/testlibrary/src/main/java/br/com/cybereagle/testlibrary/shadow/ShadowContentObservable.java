@@ -18,8 +18,8 @@ package br.com.cybereagle.testlibrary.shadow;
 
 import android.database.ContentObservable;
 import android.database.ContentObserver;
-import org.robolectric.internal.Implementation;
-import org.robolectric.internal.Implements;
+import org.robolectric.annotation.Implementation;
+import org.robolectric.annotation.Implements;
 
 @Implements(ContentObservable.class)
 public class ShadowContentObservable extends ShadowObservable<ContentObserver> {

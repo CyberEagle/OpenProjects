@@ -18,8 +18,8 @@ package br.com.cybereagle.testlibrary.shadow;
 
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
-import org.robolectric.internal.Implementation;
-import org.robolectric.internal.Implements;
+import org.robolectric.annotation.Implementation;
+import org.robolectric.annotation.Implements;
 
 @Implements(DataSetObservable.class)
 public class ShadowDataSetObservable extends ShadowObservable<DataSetObserver> {

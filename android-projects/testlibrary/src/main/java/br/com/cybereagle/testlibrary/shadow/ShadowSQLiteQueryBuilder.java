@@ -25,8 +25,8 @@ import android.os.OperationCanceledException;
 import android.provider.BaseColumns;
 import android.text.TextUtils;
 import android.util.Log;
-import org.robolectric.internal.Implementation;
-import org.robolectric.internal.Implements;
+import org.robolectric.annotation.Implementation;
+import org.robolectric.annotation.Implements;
 
 import java.util.Iterator;
 import java.util.Map;

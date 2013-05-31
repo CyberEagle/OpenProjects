@@ -19,9 +19,9 @@ package br.com.cybereagle.testlibrary.shadow;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.support.v4.content.AsyncTaskLoader;
-import org.robolectric.internal.Implementation;
-import org.robolectric.internal.Implements;
-import org.robolectric.internal.RealObject;
+import org.robolectric.annotation.Implementation;
+import org.robolectric.annotation.Implements;
+import org.robolectric.annotation.RealObject;
 
 import java.lang.reflect.Field;
 
