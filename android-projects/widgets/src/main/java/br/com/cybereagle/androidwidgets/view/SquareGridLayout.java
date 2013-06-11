@@ -17,19 +17,20 @@ package br.com.cybereagle.androidwidgets.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
+import android.widget.GridLayout;
 import br.com.cybereagle.androidwidgets.util.ViewUtils;
 
-public class SquareRelativeLayout extends RelativeLayout {
-    public SquareRelativeLayout(Context context) {
+public class SquareGridLayout extends GridLayout {
+    public SquareGridLayout(Context context) {
         super(context);
     }
 
-    public SquareRelativeLayout(Context context, AttributeSet attrs) {
+    public SquareGridLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SquareRelativeLayout(Context context, AttributeSet attrs, int defStyle) {
+    public SquareGridLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
