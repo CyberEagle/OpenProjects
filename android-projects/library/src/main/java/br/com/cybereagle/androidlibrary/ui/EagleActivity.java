@@ -43,6 +43,7 @@ public abstract class EagleActivity extends RoboSherlockFragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        beforeCreate(savedInstanceState);
 		super.onCreate(savedInstanceState);
 
 		initializeUnretainedInstanceFields(savedInstanceState);
@@ -94,11 +95,19 @@ public abstract class EagleActivity extends RoboSherlockFragmentActivity {
 		Log.d(getActivityIdentifier(), e.getLocalizedMessage());
 	}
 
-	protected abstract void initializeRetainedInstanceFields(Bundle savedInstanceState);
+    protected void beforeCreate(Bundle savedInstanceState){
 
-	protected abstract void initializeUnretainedInstanceFields(Bundle savedInstanceState);
+    }
 
-	protected abstract void createView(Bundle savedInstanceState);
+    protected void initializeUnretainedInstanceFields(Bundle savedInstanceState) {
+
+    }
+
+	protected void initializeRetainedInstanceFields(Bundle savedInstanceState){
+
+    }
+
+    protected abstract void createView(Bundle savedInstanceState);
 
 	protected String getActivityIdentifier() {
 		if (this.activityIdentifier != null) {
