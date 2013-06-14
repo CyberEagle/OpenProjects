@@ -1,7 +1,6 @@
 package br.com.cybereagle.androidwidgets.helper;
 
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import br.com.cybereagle.androidwidgets.listener.EndlessScrollListener;
@@ -36,7 +35,7 @@ public class EndlessListViewHelper {
     public void showLoadingView(){
         if(loadingView != null && !loadingViewAttached){
             if(endlessScrollListener != null){
-                endlessScrollListener.increaseVisibleThreshold();
+                endlessScrollListener.setLoadingViewAttached(true);
             }
             listView.addFooterView(loadingView, null, false);
             loadingViewAttached = true;
@@ -46,7 +45,7 @@ public class EndlessListViewHelper {
     public void hideLoadingView(){
         if(loadingView != null && loadingViewAttached){
             if(endlessScrollListener != null){
-                endlessScrollListener.decreaseVisibleThreshold();
+                endlessScrollListener.setLoadingViewAttached(false);
             }
             listView.removeFooterView(loadingView);
             loadingViewAttached = false;
