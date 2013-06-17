@@ -24,14 +24,6 @@ public class EndlessWithSelectionListView extends SelectionListView {
         this.endlessListViewHelper = new EndlessListViewHelper(this);
     }
 
-    @Override
-    public void setOnScrollListener(OnScrollListener onScrollListener) {
-        if(onScrollListener instanceof EndlessScrollListener){
-            endlessListViewHelper.setEndlessScrollListener((EndlessScrollListener) onScrollListener);
-        }
-        super.setOnScrollListener(onScrollListener);
-    }
-
     public View getLoadingView() {
         return endlessListViewHelper.getLoadingView();
     }

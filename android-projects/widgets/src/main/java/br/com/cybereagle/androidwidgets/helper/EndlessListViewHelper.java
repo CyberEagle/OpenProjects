@@ -9,17 +9,12 @@ public class EndlessListViewHelper {
 
     private ListView listView;
 
-    private EndlessScrollListener endlessScrollListener;
     private View loadingView;
     private boolean loadingViewAttached;
     private View dummyView;
 
     public EndlessListViewHelper(ListView listView){
         this.listView = listView;
-    }
-
-    public void setEndlessScrollListener(EndlessScrollListener endlessScrollListener) {
-        this.endlessScrollListener = endlessScrollListener;
     }
 
     public void beforeSetAdapter(ListAdapter listAdapter){
@@ -34,9 +29,6 @@ public class EndlessListViewHelper {
 
     public void showLoadingView(){
         if(loadingView != null && !loadingViewAttached){
-            if(endlessScrollListener != null){
-                endlessScrollListener.setLoadingViewAttached(true);
-            }
             listView.addFooterView(loadingView, null, false);
             loadingViewAttached = true;
         }
@@ -44,9 +36,6 @@ public class EndlessListViewHelper {
 
     public void hideLoadingView(){
         if(loadingView != null && loadingViewAttached){
-            if(endlessScrollListener != null){
-                endlessScrollListener.setLoadingViewAttached(false);
-            }
             listView.removeFooterView(loadingView);
             loadingViewAttached = false;
         }
