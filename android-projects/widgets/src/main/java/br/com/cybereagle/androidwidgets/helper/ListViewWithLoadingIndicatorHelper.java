@@ -3,9 +3,9 @@ package br.com.cybereagle.androidwidgets.helper;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import br.com.cybereagle.androidwidgets.listener.EndlessScrollListener;
+import br.com.cybereagle.androidwidgets.interfaces.ListViewWithLoadingIndicator;
 
-public class EndlessListViewHelper {
+public class ListViewWithLoadingIndicatorHelper implements ListViewWithLoadingIndicator {
 
     private ListView listView;
 
@@ -13,7 +13,7 @@ public class EndlessListViewHelper {
     private boolean loadingViewAttached;
     private View dummyView;
 
-    public EndlessListViewHelper(ListView listView){
+    public ListViewWithLoadingIndicatorHelper(ListView listView){
         this.listView = listView;
     }
 
@@ -27,6 +27,7 @@ public class EndlessListViewHelper {
         dummyView = null;
     }
 
+    @Override
     public void showLoadingView(){
         if(loadingView != null && !loadingViewAttached){
             listView.addFooterView(loadingView, null, false);
@@ -34,6 +35,7 @@ public class EndlessListViewHelper {
         }
     }
 
+    @Override
     public void hideLoadingView(){
         if(loadingView != null && loadingViewAttached){
             listView.removeFooterView(loadingView);
@@ -42,22 +44,17 @@ public class EndlessListViewHelper {
 
     }
 
+    @Override
     public boolean isLoadingViewVisible(){
         return loadingViewAttached;
     }
 
-    public ListView getListView() {
-        return listView;
-    }
-
-    public void setListView(ListView listView) {
-        this.listView = listView;
-    }
-
+    @Override
     public View getLoadingView() {
         return loadingView;
     }
 
+    @Override
     public void setLoadingView(View loadingView) {
         this.loadingView = loadingView;
     }
