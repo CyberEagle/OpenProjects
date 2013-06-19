@@ -16,7 +16,7 @@ lint.xml
 *.iws
 classes
 gen-external-apklibs
-atlassian-ide-plugin.xml
+*-ide-plugin.xml
 
 #Maven
 target
@@ -32,3 +32,4 @@ proguard-project.txt
 #Other
 .DS_Store
 tmp
+.directory
