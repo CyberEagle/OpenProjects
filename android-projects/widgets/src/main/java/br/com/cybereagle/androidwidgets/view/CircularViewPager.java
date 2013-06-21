@@ -37,8 +37,23 @@ public class CircularViewPager extends ViewPager {
     public void setCurrentVirtualItem(int virtualItem, boolean smoothScroll){
         int currentVirtualItem = getCurrentVirtualItem();
 
-        int rightDistance = Math.abs(virtualItem - currentVirtualItem);
-        int leftDistance = Math.abs(currentVirtualItem + (wrapperCircularPagerAdapter.getRealCount() - virtualItem));
+        int leftDistance;
+        int rightDistance;
+        int size = wrapperCircularPagerAdapter.getRealCount();
+
+        if(virtualItem < currentVirtualItem){
+            leftDistance = currentVirtualItem - virtualItem;
+
+            int stepsToArriveToFirstElement = size - currentVirtualItem;
+            rightDistance = stepsToArriveToFirstElement + virtualItem;
+        }
+        else {
+            rightDistance = virtualItem - currentVirtualItem;
+
+            int lastIndex = size - 1;
+            int stepsToArriveToLastElement = currentVirtualItem + 1;
+            leftDistance = stepsToArriveToLastElement + (lastIndex - virtualItem);
+        }
 
         int currentItem = getCurrentItem();
 
