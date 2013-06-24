@@ -17,22 +17,31 @@
 package br.com.cybereagle.androidwidgets.view;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import br.com.cybereagle.androidwidgets.helper.UninterceptableViewPagerHelper;
+import br.com.cybereagle.androidwidgets.interfaces.UninterceptableViewPager;
 
-public class UninterceptableViewPager extends ViewPager {
+public class UninterceptableCircularViewPager extends CircularViewPager implements UninterceptableViewPager {
 
-    public UninterceptableViewPager(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    private UninterceptableViewPagerHelper uninterceptableViewPagerHelper;
+
+    public UninterceptableCircularViewPager(Context context) {
+        this(context, null);
     }
 
+    public UninterceptableCircularViewPager(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        uninterceptableViewPagerHelper = new UninterceptableViewPagerHelper(this);
+    }
+
+    @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        // Tell our parent to stop intercepting our events!
-        boolean ret = super.onInterceptTouchEvent(ev);
-        if (ret) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        return ret;
+        return uninterceptableViewPagerHelper.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public boolean callRealOnInterceptTouchEvent(MotionEvent motionEvent) {
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

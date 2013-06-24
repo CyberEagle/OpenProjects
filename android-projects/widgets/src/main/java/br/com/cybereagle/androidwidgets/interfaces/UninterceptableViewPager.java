@@ -16,14 +16,8 @@
 
 package br.com.cybereagle.androidwidgets.interfaces;
 
-import android.view.View;
+import android.view.MotionEvent;
 
-public interface ListViewWithLoadingIndicator {
-
-    void showLoadingView();
-    void hideLoadingView();
-    boolean isLoadingViewVisible();
-    View getLoadingView();
-    void setLoadingView(View loadingView);
-
+public interface UninterceptableViewPager {
+    boolean callRealOnInterceptTouchEvent(MotionEvent motionEvent);
 }

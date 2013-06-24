@@ -1,34 +1,57 @@
+/*
+ * Copyright 2013 Cyber Eagle
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package br.com.cybereagle.androidwidgets.adapter;
 
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import br.com.cybereagle.androidwidgets.view.CircularViewPager;
 
 public class WrapperCircularPagerAdapter extends PagerAdapter {
 
-    private static final String TAG = "WrapperCircularPagerAdapter";
-    private static final boolean DEBUG = true;
+    private static final int DEFAULT_QUANTITY_OF_CYCLES = 100;
 
     private PagerAdapter adapter;
+    private int quantityOfCycles;
 
     public WrapperCircularPagerAdapter(PagerAdapter adapter) {
+        this(adapter, DEFAULT_QUANTITY_OF_CYCLES);
+    }
+
+    /**
+     *
+     * @param adapter
+     * @param quantityOfCycles The quantity of times the user can se all the elements going to the same side.
+     *                         WARNING: Bigger the quantityOfCycles, worse the performance.
+     */
+    public WrapperCircularPagerAdapter(PagerAdapter adapter, int quantityOfCycles){
         this.adapter = adapter;
+        this.quantityOfCycles = quantityOfCycles;
     }
 
     @Override
     public int getCount() {
-        // warning: scrolling to very high values (1,000,000+) results in
-        // strange drawing behaviour
-        return Integer.MAX_VALUE;
+        return 2*getOffsetAmount();
     }
 
     /**
      * @return the {@link #getCount()} result of the wrapped adapter
      */
-    public int getRealCount() {
+    public int getVirtualCount() {
         return adapter.getCount();
     }
 
@@ -71,13 +94,17 @@ public class WrapperCircularPagerAdapter extends PagerAdapter {
         adapter.startUpdate(container);
     }
 
-    /*
-     * End delegation
-     */
-
-    private void debug(String message) {
-        if (DEBUG) {
-            Log.d(TAG, message);
-        }
+    @Override
+    public int getItemPosition(Object object) {
+        return adapter.getItemPosition(object);
     }
+
+    /**
+     * Offset for each side, if the current item is in the middle.
+     * @return
+     */
+    public int getOffsetAmount() {
+        return getVirtualCount() * quantityOfCycles;
+    }
+
 }
