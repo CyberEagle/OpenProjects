@@ -107,4 +107,7 @@ public class WrapperCircularPagerAdapter extends PagerAdapter {
         return getVirtualCount() * quantityOfCycles;
     }
 
+    public PagerAdapter getAdapter() {
+        return adapter;
+    }
 }

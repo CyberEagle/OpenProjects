@@ -85,4 +85,7 @@ public class CircularViewPager extends ViewPager {
         return getCurrentItem() % wrapperCircularPagerAdapter.getVirtualCount();
     }
 
+    public PagerAdapter getVirtualAdapter() {
+        return wrapperCircularPagerAdapter != null ? wrapperCircularPagerAdapter.getAdapter() : null;
+    }
 }
