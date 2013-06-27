@@ -97,6 +97,10 @@
 			<artifactId>library</artifactId>
 			<type>apklib</type>
 		</dependency>
+        <dependency>
+            <groupId>com.nineoldandroids</groupId>
+            <artifactId>library</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>

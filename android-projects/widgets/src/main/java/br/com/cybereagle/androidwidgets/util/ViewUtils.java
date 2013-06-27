@@ -16,9 +16,17 @@
 
 package br.com.cybereagle.androidwidgets.util;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.view.View;
 
 public class ViewUtils {
+
+    public static final boolean IS_API_11_OR_ABOVE;
+
+    static {
+        IS_API_11_OR_ABOVE = Build.VERSION.SDK_INT >= 11;
+    }
 
     public static int makeSquareMeasureSpec(int widthMeasureSpec, int heightMeasureSpec) {
         int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
@@ -38,5 +46,29 @@ public class ViewUtils {
         }
 
         return View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.EXACTLY);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void enableHardwareLayer(View view) {
+        if(!ViewUtils.IS_API_11_OR_ABOVE){
+            return;
+        }
+
+        setLayer(view, View.LAYER_TYPE_HARDWARE);
+    }
+
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public static void enableSoftwareLayer(View view){
+        if(!ViewUtils.IS_API_11_OR_ABOVE){
+            return;
+        }
+
+        setLayer(view, View.LAYER_TYPE_SOFTWARE);
+    }
+
+    private static void setLayer(View view, int layer) {
+        if(view.getLayerType() != layer){
+            view.setLayerType(layer, null);
+        }
     }
 }
