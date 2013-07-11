@@ -55,6 +55,7 @@ public abstract class EagleActivity extends RoboSherlockFragmentActivity {
 			reinitializeInstanceFields(retainedMap);
 		}
 		createView(savedInstanceState);
+        afterCreateView(savedInstanceState);
 		setupCloseSoftKeyboardListener(contentView);
 		contentView.setFocusable(true);
 		contentView.setFocusableInTouchMode(true);
@@ -104,6 +105,10 @@ public abstract class EagleActivity extends RoboSherlockFragmentActivity {
     }
 
 	protected void initializeRetainedInstanceFields(Bundle savedInstanceState){
+
+    }
+
+    protected void afterCreateView(Bundle savedInstanceState){
 
     }
 
