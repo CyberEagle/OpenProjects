@@ -20,6 +20,7 @@ import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -201,7 +202,13 @@ public class ListPopupWindow {
     public ListPopupWindow(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         mContext = context;
         hackUtils = new HackUtils();
-        mPopup = new PopupWindow(context, attrs, defStyleAttr, defStyleRes);
+        if(Build.VERSION.SDK_INT >= 11){
+            mPopup = new PopupWindow(context, attrs, defStyleAttr, defStyleRes);
+        }
+        else {
+            mPopup = new PopupWindow(context, attrs, defStyleAttr);
+        }
+
         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
     }
 
