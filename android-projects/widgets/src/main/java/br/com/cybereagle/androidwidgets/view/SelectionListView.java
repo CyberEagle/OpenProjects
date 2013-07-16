@@ -17,6 +17,7 @@
 package br.com.cybereagle.androidwidgets.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
@@ -26,10 +27,13 @@ import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import br.com.cybereagle.androidwidgets.R;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.ActionMode;
 
 public class SelectionListView extends ListView {
+
+    private boolean selectableFromTheBeginning;
 
     private SherlockFragmentActivity activity;
     ActionMode actionMode;
@@ -40,9 +44,9 @@ public class SelectionListView extends ListView {
     private SelecionActionModeCallback actionModeCallback;
 
     /**
-     * String like: %d items selected
+     * Default: %d items selected
      */
-    private String selectedStringFormat = "%d items selected";
+    private String selectedStringFormat;
 
     public SelectionListView(Context context) {
         this( context, null, 0);
@@ -55,6 +59,21 @@ public class SelectionListView extends ListView {
 
     public SelectionListView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs,
+                R.styleable.SelectionListView, 0, 0);
+
+        selectableFromTheBeginning = a.getBoolean(R.styleable.SelectionListView_selectableFromTheBeginning, false);
+        selectedStringFormat = a.getString(R.styleable.SelectionListView_selectedStringFormat);
+        if(selectedStringFormat == null){
+            selectedStringFormat = "%d items selected";
+        }
+        if(!selectedStringFormat.contains("%d")){
+            throw new IllegalArgumentException("The selectedStringFormat must have a %d for the number of selected items to be set.");
+        }
+
+        a.recycle();
+
         setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         activity = (SherlockFragmentActivity) context;
     }
@@ -79,7 +98,7 @@ public class SelectionListView extends ListView {
         final int x = (int) ev.getX();
         final int y = (int) ev.getY();
 
-        if (action == MotionEvent.ACTION_DOWN && x < getWidth() / 7) {
+        if (action == MotionEvent.ACTION_DOWN && x < getWidth() / 7 && (selectableFromTheBeginning || actionMode != null)) {
             selectionMode = true;
             startPosition = pointToPosition(x, y);
         }
@@ -175,6 +194,14 @@ public class SelectionListView extends ListView {
 
     public void setSelectedStringFormat(String selectedStringFormat) {
         this.selectedStringFormat = selectedStringFormat;
+    }
+
+    public boolean isSelectableFromTheBeginning() {
+        return selectableFromTheBeginning;
+    }
+
+    public void setSelectableFromTheBeginning(boolean selectableFromTheBeginning) {
+        this.selectableFromTheBeginning = selectableFromTheBeginning;
     }
 
     public static abstract class SelecionActionModeCallback implements ActionMode.Callback{

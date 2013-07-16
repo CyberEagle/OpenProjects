@@ -17,4 +17,9 @@
 
 <resources>
     <attr name="listMenuItemStyle" format="reference" />
+
+    <declare-styleable name="SelectionListView">
+        <attr name="selectableFromTheBeginning" format="boolean" />
+        <attr name="selectedStringFormat" format="string" />
+    </declare-styleable>
 </resources>
