@@ -26,6 +26,8 @@ import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.AdapterView;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import br.com.cybereagle.androidwidgets.R;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
@@ -117,9 +119,10 @@ public class SelectionListView extends ListView {
             case MotionEvent.ACTION_UP:
             default:
                 selectionMode = false;
-                int mItemPosition = pointToPosition(x, y);
-                if (startPosition != ListView.INVALID_POSITION){
-                    setItemChecked(mItemPosition, !isItemChecked(mItemPosition));
+
+                int itemPosition = pointToPosition(x, y);
+                if (startPosition != ListView.INVALID_POSITION && isSelectable(itemPosition)){
+                    setItemChecked(itemPosition, !isItemChecked(itemPosition));
                 }
 
         }
@@ -127,6 +130,14 @@ public class SelectionListView extends ListView {
         return true;
     }
 
+    private boolean isSelectable(int itemPosition) {
+        ListAdapter adapter = getAdapter();
+        if(!(adapter instanceof HeaderViewListAdapter)){
+            return true;
+        }
+
+        return ((HeaderViewListAdapter) adapter).isEnabled(itemPosition);
+    }
 
 
     @Override

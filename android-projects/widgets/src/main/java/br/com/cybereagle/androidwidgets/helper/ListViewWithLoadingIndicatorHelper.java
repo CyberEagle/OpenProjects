@@ -35,7 +35,7 @@ public class ListViewWithLoadingIndicatorHelper implements ListViewWithLoadingIn
 
     public void beforeSetAdapter(ListAdapter listAdapter){
         dummyView = new View(listView.getContext());
-        listView.addFooterView(dummyView);
+        listView.addFooterView(dummyView, null, false);
     }
 
     public void afterSetAdapter(ListAdapter listAdapter){
