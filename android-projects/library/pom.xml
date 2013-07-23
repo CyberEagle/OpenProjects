@@ -84,19 +84,8 @@
         <dependency>
             <groupId>com.actionbarsherlock</groupId>
             <artifactId>actionbarsherlock</artifactId>
+            <type>jar</type>
         </dependency>
-		<dependency>
-			<groupId>com.actionbarsherlock</groupId>
-			<artifactId>library</artifactId>
-			<type>apklib</type>
-            <scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.viewpagerindicator</groupId>
-			<artifactId>library</artifactId>
-			<type>apklib</type>
-            <scope>provided</scope>
-		</dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>

@@ -86,12 +86,8 @@
         <dependency>
             <groupId>com.actionbarsherlock</groupId>
             <artifactId>actionbarsherlock</artifactId>
+            <type>apklib</type>
         </dependency>
-		<dependency>
-			<groupId>com.actionbarsherlock</groupId>
-			<artifactId>library</artifactId>
-			<type>apklib</type>
-		</dependency>
 		<dependency>
 			<groupId>com.viewpagerindicator</groupId>
 			<artifactId>library</artifactId>
