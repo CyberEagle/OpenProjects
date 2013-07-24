@@ -38,6 +38,7 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import br.com.cybereagle.androidlibrary.util.HackUtils;
+import br.com.cybereagle.androidwidgets.R;
 
 /**
  * A ListPopupWindow anchors itself to a host view and displays a
@@ -1171,7 +1172,7 @@ public class ListPopupWindow {
          * @param context this view's context
          */
         public DropDownListView(Context context, boolean hijackFocus) {
-            super(context, null, 0 /* org.openintents.shopping.R.attr.dropDownListViewStyle*/);
+            super(context, null, R.attr.dropDownListViewStyle);
             mHijackFocus = hijackFocus;
             // TODO: Add an API to control this
             setCacheColorHint(0); // Transparent, since the background drawable could be anything.
