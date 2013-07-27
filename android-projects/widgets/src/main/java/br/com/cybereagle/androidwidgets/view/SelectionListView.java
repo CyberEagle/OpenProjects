@@ -19,6 +19,8 @@ package br.com.cybereagle.androidwidgets.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Parcelable;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.view.ActionMode;
 import android.util.AttributeSet;
 import android.util.SparseBooleanArray;
 import android.view.MotionEvent;
@@ -30,14 +32,12 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import br.com.cybereagle.androidwidgets.R;
-import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.actionbarsherlock.view.ActionMode;
 
 public class SelectionListView extends ListView {
 
     private boolean selectableFromTheBeginning;
 
-    private SherlockFragmentActivity activity;
+    private ActionBarActivity activity;
     ActionMode actionMode;
 
     private boolean selectionMode = false;
@@ -77,7 +77,7 @@ public class SelectionListView extends ListView {
         a.recycle();
 
         setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-        activity = (SherlockFragmentActivity) context;
+        activity = (ActionBarActivity) context;
     }
 
     @Override
@@ -158,7 +158,7 @@ public class SelectionListView extends ListView {
             return;
         }
         if (actionMode == null)
-            actionMode = activity.startActionMode(actionModeCallback);
+            actionMode = activity.startSupportActionMode(actionModeCallback);
 
         actionMode.setTitle(String.format(selectedStringFormat, checkedCount));
     }

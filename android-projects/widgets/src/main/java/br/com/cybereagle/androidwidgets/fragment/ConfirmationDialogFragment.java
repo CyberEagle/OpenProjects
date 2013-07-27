@@ -21,10 +21,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import br.com.cybereagle.androidwidgets.R;
+import roboguice.fragment.RoboDialogFragment;
 
-import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockDialogFragment;
-
-public class ConfirmationDialogFragment extends RoboSherlockDialogFragment {
+public class ConfirmationDialogFragment extends RoboDialogFragment {
 
 	private int icon;
 	private int title;

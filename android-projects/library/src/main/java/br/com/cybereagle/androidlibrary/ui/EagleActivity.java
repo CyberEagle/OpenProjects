@@ -16,16 +16,6 @@
 
 package br.com.cybereagle.androidlibrary.ui;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import br.com.cybereagle.commonlibrary.util.ReflectionUtils;
-import roboguice.inject.InjectView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -33,8 +23,17 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import br.com.cybereagle.androidlibrary.annotation.Retained;
 import br.com.cybereagle.androidlibrary.util.Utils;
+import br.com.cybereagle.commonlibrary.util.ReflectionUtils;
+import roboguice.inject.InjectView;
 
-public abstract class EagleActivity extends RoboSherlockFragmentActivity {
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+public abstract class EagleActivity extends RoboActionBarActivity {
 
 	protected String activityIdentifier;
 

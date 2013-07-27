@@ -71,23 +71,21 @@
                 </exclusion>
             </exclusions>
 		</dependency>
+
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>support-v7-appcompat</artifactId>
+            <type>apklib</type>
+        </dependency>
+
 		<dependency>
 			<groupId>org.roboguice</groupId>
 			<artifactId>roboguice</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.rtyley</groupId>
-			<artifactId>roboguice-sherlock</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.actionbarsherlock</groupId>
-            <artifactId>actionbarsherlock</artifactId>
-            <type>apklib</type>
-        </dependency>
 		<dependency>
 			<groupId>com.viewpagerindicator</groupId>
 			<artifactId>library</artifactId>

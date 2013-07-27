@@ -22,9 +22,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import br.com.cybereagle.androidwidgets.view.EditableListView;
-import com.github.rtyley.android.sherlock.roboguice.fragment.RoboSherlockFragment;
+import roboguice.fragment.RoboFragment;
 
-public abstract class EditableListFragment extends RoboSherlockFragment{
+public abstract class EditableListFragment extends RoboFragment {
 
 	private EditableListView editableListView;
     

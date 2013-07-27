@@ -1,7 +1,17 @@
 You'll need the following dependencies that are currently out of the Maven Central Repository:
 
-- android-support-v13
+- android 4.3
+Use the Maven Android SDK Deployer (https://github.com/mosabua/maven-android-sdk-deployer), installing the android 4.3 with the command:
+mvn install -P 4.3
+
+
+- android-support-v4
 Use the Maven Android SDK Deployer (https://github.com/mosabua/maven-android-sdk-deployer), installing the compatibility-v4 with the command:
 mvn install -Dextras.compatibility.v4.groupid=com.google.android \
             -Dextras.compatibility.v4.artifactid=support-v4 \
             -Dextras.compatibility.v4.version.prefix=r
+
+- android-support-v7-appcompat
+Use the Maven Android SDK Deployer (https://github.com/mosabua/maven-android-sdk-deployer), installing the compatibility-v7-appcompat with the command:
+mvn install -Dextras.compatibility.v7.appcompat.groupid=com.google.android \
+            -Dextras.compatibility.v7.appcompat.artifactid=support-v7-appcompat
