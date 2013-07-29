@@ -21,12 +21,13 @@ import android.support.v4.app.FragmentActivity;
 import br.com.cybereagle.androidlibrary.ui.RoboActionBarActivity;
 import br.com.cybereagle.androidlibrary.ui.helper.RetainedActivityHelper;
 import br.com.cybereagle.androidlibrary.ui.interfaces.RetainedActivity;
+import roboguice.activity.RoboFragmentActivity;
 
-public abstract class RetainedFragmentActivity extends FragmentActivity implements RetainedActivity {
+public abstract class RetainedRoboFragmentActivity extends RoboFragmentActivity implements RetainedActivity {
 
     private RetainedActivityHelper retainedActivityHelper;
 
-    protected RetainedFragmentActivity() {
+    protected RetainedRoboFragmentActivity() {
         this.retainedActivityHelper = new RetainedActivityHelper(this);
     }
 
