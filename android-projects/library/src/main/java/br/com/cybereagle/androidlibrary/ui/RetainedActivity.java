@@ -18,11 +18,8 @@ package br.com.cybereagle.androidlibrary.ui;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import br.com.cybereagle.androidlibrary.annotation.Retained;
-import br.com.cybereagle.androidlibrary.util.Utils;
 import br.com.cybereagle.commonlibrary.util.ReflectionUtils;
 import roboguice.inject.InjectView;
 
@@ -33,7 +30,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public abstract class EagleActivity extends RoboActionBarActivity {
+public abstract class RetainedActivity extends RoboActionBarActivity {
 
 	protected String activityIdentifier;
 
@@ -55,15 +52,12 @@ public abstract class EagleActivity extends RoboActionBarActivity {
 		}
 		createView(savedInstanceState);
         afterCreateView(savedInstanceState);
-		setupCloseSoftKeyboardListener(contentView);
-		contentView.setFocusable(true);
-		contentView.setFocusableInTouchMode(true);
 	}
 
 	@Override
 	public Object onRetainCustomNonConfigurationInstance() {
 		Map<String, Object> retainedMap = new HashMap<String, Object>();
-		Class<? extends EagleActivity> clazz = this.getClass();
+		Class<? extends RetainedActivity> clazz = this.getClass();
 		List<Field> fields = ReflectionUtils.getInstanceVariables(clazz);
 		for (Field field : fields) {
 			if (field.getAnnotation(Retained.class) != null) {
@@ -78,7 +72,7 @@ public abstract class EagleActivity extends RoboActionBarActivity {
 	}
 
 	protected void reinitializeInstanceFields(Map<String, Object> retainedMap) {
-		Class<? extends EagleActivity> clazz = this.getClass();
+		Class<? extends RetainedActivity> clazz = this.getClass();
 		List<Field> fields = ReflectionUtils.getInstanceVariables(clazz);
 		for (Field field : fields) {
 			if (field.getAnnotation(Retained.class) != null) {
@@ -126,22 +120,5 @@ public abstract class EagleActivity extends RoboActionBarActivity {
 		}
 		this.activityIdentifier = activityIdentifier.toString().toUpperCase(Locale.US);
 		return this.activityIdentifier;
-	}
-
-	private void setupCloseSoftKeyboardListener(View view) {
-		// Set up touch listener for non-text box views to hide keyboard.
-		view.setOnTouchListener(new OnTouchListener() {
-
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				Utils.hideSoftKeyboard(EagleActivity.this);
-				View focusedView = getCurrentFocus();
-				if(focusedView != null){
-					focusedView.clearFocus();
-				}
-				return false;
-			}
-
-		});
 	}
 }
