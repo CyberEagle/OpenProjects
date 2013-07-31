@@ -45,7 +45,8 @@
         <android.version>4.3_r1</android.version>
         <abs.version>4.3.1</abs.version>
         <support.v4.version>r18</support.v4.version>
-        <support.v7.version>18</support.v7.version>
+        <support.v7.version>18-patched</support.v7.version>
+        <!--<support.v7.version>18</support.v7.version>-->
     </properties>
 
     <dependencies>
@@ -65,6 +66,7 @@
             <groupId>com.google.android</groupId>
             <artifactId>support-v7-appcompat</artifactId>
             <version>${support.v7.version}</version>
+            <scope>provided</scope>
             <type>jar</type>
         </dependency>
     </dependencies>

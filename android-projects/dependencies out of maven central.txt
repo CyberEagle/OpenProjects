@@ -15,3 +15,4 @@ mvn install -Dextras.compatibility.v4.groupid=com.google.android \
 Use the Maven Android SDK Deployer (https://github.com/mosabua/maven-android-sdk-deployer), installing the compatibility-v7-appcompat with the command:
 mvn install -Dextras.compatibility.v7.appcompat.groupid=com.google.android \
             -Dextras.compatibility.v7.appcompat.artifactid=support-v7-appcompat
+UPDATE: There's a bug with the support-v7-appcompat:18. For a patched version, use: https://github.com/CyberEagle/SupportLibraryV7AppCompatPatched
