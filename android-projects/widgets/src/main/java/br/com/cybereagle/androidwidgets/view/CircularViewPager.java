@@ -41,6 +41,7 @@ public class CircularViewPager extends ViewPager {
         }
         super.setAdapter(adapter);
         this.wrapperCircularPagerAdapter = (WrapperCircularPagerAdapter) adapter;
+        this.wrapperCircularPagerAdapter.setCircularViewPager(this);
         // offset first element so that we can scroll to the left
         setCurrentItem(wrapperCircularPagerAdapter.getOffsetAmount(), false);
     }
@@ -51,6 +52,10 @@ public class CircularViewPager extends ViewPager {
     }
 
     public void setCurrentVirtualItem(int virtualItem, boolean smoothScroll){
+        setCurrentVirtualItem(virtualItem, getCurrentItem(), smoothScroll);
+    }
+
+    public void setCurrentVirtualItem(int virtualItem, int currentItem, boolean smoothScroll){
         int currentVirtualItem = getCurrentVirtualItem();
 
         int leftDistance;
@@ -70,8 +75,6 @@ public class CircularViewPager extends ViewPager {
             int stepsToArriveToLastElement = currentVirtualItem + 1;
             leftDistance = stepsToArriveToLastElement + (lastIndex - virtualItem);
         }
-
-        int currentItem = getCurrentItem();
 
         if(leftDistance < rightDistance){
             setCurrentItem(currentItem - leftDistance, smoothScroll);

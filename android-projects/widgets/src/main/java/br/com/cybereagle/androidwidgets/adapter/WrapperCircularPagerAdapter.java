@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import br.com.cybereagle.androidwidgets.view.CircularViewPager;
 
 public class WrapperCircularPagerAdapter extends PagerAdapter {
 
@@ -27,6 +28,8 @@ public class WrapperCircularPagerAdapter extends PagerAdapter {
 
     private PagerAdapter adapter;
     private int quantityOfCycles;
+
+    private CircularViewPager circularViewPager;
 
     public WrapperCircularPagerAdapter(PagerAdapter adapter) {
         this(adapter, DEFAULT_QUANTITY_OF_CYCLES);
@@ -107,7 +110,24 @@ public class WrapperCircularPagerAdapter extends PagerAdapter {
         return getVirtualCount() * quantityOfCycles;
     }
 
+    /**
+     * It tries to keep at the same virtual item, but near the middle of the pages to avoid the user reaching one of the ends.
+     */
+    @Override
+    public void notifyDataSetChanged() {
+        if(circularViewPager == null){
+            throw new IllegalStateException("The WrapperCircularPagerAdapter isn't attached to a CircularViewPager");
+        }
+        int currentVirtualItem = circularViewPager.getCurrentVirtualItem();
+        super.notifyDataSetChanged();
+        circularViewPager.setCurrentVirtualItem(currentVirtualItem, getOffsetAmount()+currentVirtualItem, false);
+    }
+
     public PagerAdapter getAdapter() {
         return adapter;
+    }
+
+    public void setCircularViewPager(CircularViewPager circularViewPager) {
+        this.circularViewPager = circularViewPager;
     }
 }
