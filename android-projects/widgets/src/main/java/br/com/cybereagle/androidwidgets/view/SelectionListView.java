@@ -185,7 +185,7 @@ public class SelectionListView extends ListView {
         setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
-                if(position >= getHeaderViewsCount()){
+                if(isSelectable(position)){
                     if(isItemChecked(position)){
                         setItemChecked(position, false);
                     }
