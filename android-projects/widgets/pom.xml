@@ -61,16 +61,16 @@
                 </exclusion>
             </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>br.com.cybereagle</groupId>
-			<artifactId>androidtestlibrary</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>br.com.cybereagle</groupId>
-                    <artifactId>commonlibrary</artifactId>
-                </exclusion>
-            </exclusions>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>br.com.cybereagle</groupId>-->
+			<!--<artifactId>androidtestlibrary</artifactId>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<groupId>br.com.cybereagle</groupId>-->
+                    <!--<artifactId>commonlibrary</artifactId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+		<!--</dependency>-->
 
         <dependency>
             <groupId>com.google.android</groupId>
@@ -102,10 +102,6 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>

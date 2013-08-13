@@ -21,15 +21,21 @@ import android.widget.ListView;
 
 public abstract class EndlessScrollListener implements AbsListView.OnScrollListener {
 
-    private int visibleThreshold = 5;
-    private int currentPage = 0;
-    private int previousTotal = 0;
-    private boolean loading = true;
+    public static final int DEFAULT_VISIBLE_THRESHOLD = 5;
+
+    private int visibleThreshold;
+    private int currentPage;
+    private int previousTotal;
+    private boolean loading;
 
     public EndlessScrollListener() {
+        this(DEFAULT_VISIBLE_THRESHOLD);
     }
     public EndlessScrollListener(int visibleThreshold) {
         this.visibleThreshold = visibleThreshold;
+        currentPage = 0;
+        previousTotal = 0;
+        loading = true;
     }
 
     @Override
@@ -46,7 +52,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
                 currentPage++;
             }
         }
-        if (hasMoreDataToLoad() && !loading && (firstVisibleItem + visibleItemCount + visibleThreshold) >= (totalItemCount - footerViewsCount)) {
+        if (!loading && hasMoreDataToLoad() && (firstVisibleItem + visibleItemCount + visibleThreshold) >= (totalItemCount - footerViewsCount)) {
             loading = true;
             loadMoreData(currentPage);
         }
@@ -59,4 +65,7 @@ public abstract class EndlessScrollListener implements AbsListView.OnScrollListe
     protected abstract boolean hasMoreDataToLoad();
     protected abstract void loadMoreData(int page);
 
+    public boolean isLoading() {
+        return loading;
+    }
 }
