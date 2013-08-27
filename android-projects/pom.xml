@@ -47,10 +47,27 @@
         <support.v4.version>r18</support.v4.version>
         <support.v7.version>18-patched</support.v7.version>
         <!--<support.v7.version>18</support.v7.version>-->
-        <robolectric.version>2.1</robolectric.version>
+        <robolectric.version>2.1.1</robolectric.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.robolectric</groupId>
+            <artifactId>robolectric</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>android</groupId>
             <artifactId>android</artifactId>
@@ -69,26 +86,6 @@
             <version>${support.v7.version}</version>
             <scope>provided</scope>
             <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.robolectric</groupId>
-            <artifactId>robolectric</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
         </dependency>
     </dependencies>
 
