@@ -25,10 +25,9 @@ import org.robolectric.util.SQLiteMap;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 
-@UsingDatabaseMap(PersistentSQLiteMap.class)
+@UsingDatabaseMap(SQLiteMap.class)
 @Config(shadows = {ShadowSQLiteQueryBuilder.class, ShadowObservable.class, ShadowContentObservable.class, ShadowDataSetObservable.class, ShadowAbstractCursor.class, ShadowSQLiteCursor.class, ShadowAsyncTaskLoader.class})
 public abstract class EagleTest {
 

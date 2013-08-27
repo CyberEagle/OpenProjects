@@ -47,7 +47,7 @@
         <support.v4.version>r18</support.v4.version>
         <support.v7.version>18-patched</support.v7.version>
         <!--<support.v7.version>18</support.v7.version>-->
-        <robolectric.version>2.0</robolectric.version>
+        <robolectric.version>2.1</robolectric.version>
     </properties>
 
     <dependencies>
