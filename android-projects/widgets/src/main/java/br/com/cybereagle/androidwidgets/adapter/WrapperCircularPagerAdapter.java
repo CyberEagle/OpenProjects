@@ -118,14 +118,15 @@ public class WrapperCircularPagerAdapter extends PagerAdapter {
         if(circularViewPager == null){
             throw new IllegalStateException("The WrapperCircularPagerAdapter isn't attached to a CircularViewPager");
         }
-        int currentVirtualItem;
         if(getVirtualCount() > 0){
-            currentVirtualItem = circularViewPager.getCurrentVirtualItem();
+            int currentVirtualItem = circularViewPager.getCurrentVirtualItem();
             super.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
             circularViewPager.setCurrentVirtualItem(currentVirtualItem, getOffsetAmount()+currentVirtualItem, false);
         }
         else {
             super.notifyDataSetChanged();
+            adapter.notifyDataSetChanged();
         }
     }
 
