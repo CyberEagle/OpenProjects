@@ -48,6 +48,7 @@
         <support.v7.version>18-patched</support.v7.version>
         <!--<support.v7.version>18</support.v7.version>-->
         <robolectric.version>2.1.1</robolectric.version>
+        <robospice.version>1.4.6</robospice.version>
     </properties>
 
     <dependencies>
@@ -212,14 +213,14 @@
             <dependency>
                 <groupId>com.octo.android.robospice</groupId>
                 <artifactId>robospice</artifactId>
-                <version>1.4.5</version>
+                <version>${robospice.version}</version>
             </dependency>
 
             <!-- Spring Android Module of RoboSpice -->
             <dependency>
                 <groupId>com.octo.android.robospice</groupId>
                 <artifactId>robospice-spring-android</artifactId>
-                <version>1.4.5</version>
+                <version>${robospice.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.codehaus.jackson</groupId>
