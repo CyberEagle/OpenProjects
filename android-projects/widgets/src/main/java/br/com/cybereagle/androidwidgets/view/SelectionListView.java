@@ -121,7 +121,7 @@ public class SelectionListView extends ListView {
                 selectionMode = false;
 
                 int itemPosition = pointToPosition(x, y);
-                if (startPosition != ListView.INVALID_POSITION && isSelectable(itemPosition)){
+                if (startPosition != ListView.INVALID_POSITION && itemPosition != ListView.INVALID_POSITION && isSelectable(itemPosition)){
                     setItemChecked(itemPosition, !isItemChecked(itemPosition));
                 }
 
