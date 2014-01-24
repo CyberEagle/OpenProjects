@@ -35,10 +35,10 @@ public class ViewUtils {
         int heightSize = View.MeasureSpec.getSize(heightMeasureSpec);
 
         int size;
-        if(widthMode == View.MeasureSpec.EXACTLY && widthSize == 0){
+        if(widthMode == View.MeasureSpec.EXACTLY && widthSize > 0){
             size = widthSize;
         }
-        else if(heightMode == View.MeasureSpec.EXACTLY && heightSize == 0){
+        else if(heightMode == View.MeasureSpec.EXACTLY && heightSize > 0){
             size = heightSize;
         }
         else{
